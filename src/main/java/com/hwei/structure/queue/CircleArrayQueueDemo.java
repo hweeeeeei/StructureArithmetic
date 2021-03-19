@@ -22,6 +22,9 @@ public class CircleArrayQueueDemo {
         circleArrayQueue.addQueue(19);
         circleArrayQueue.show();
 
+
+
+
     }
 }
 

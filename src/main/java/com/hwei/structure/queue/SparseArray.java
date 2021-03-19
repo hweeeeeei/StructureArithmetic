@@ -44,7 +44,7 @@ public class SparseArray {
 
         // 2. 创建一个稀疏数组
         // 行数等于非0元素个数+1
-        int sparseArray[][] = new int[sum + 1][3];
+        int[][] sparseArray = new int[sum + 1][3];
         // 给稀疏数组赋值,
         // 第1行1列数据为长度
         sparseArray[0][0] = 11;
@@ -79,7 +79,7 @@ public class SparseArray {
         }
 
         // -----稀疏数组转化成原始二维数组
-        int toArr[][] = new int[sparseArray[0][0]][sparseArray[0][1]];
+        int[][] toArr = new int[sparseArray[0][0]][sparseArray[0][1]];
 
         // 遍历稀疏数组
         for (int i = 1; i < sparseArray.length; i++) {

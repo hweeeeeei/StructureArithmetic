@@ -1,9 +1,11 @@
 package com.hwei.structure.linkedlist;
 
+
 /**
  * 单链表  +   按id排序的单链表
  */
 public class SingleLinkedListDemo {
+
 
     public static void main(String[] args) {
 
@@ -29,6 +31,7 @@ public class SingleLinkedListDemo {
         singleLinkedList.addSort(heroNode3);
 
         singleLinkedList.show();
+        System.out.println("----");
 
 
         // 修改
@@ -37,15 +40,56 @@ public class SingleLinkedListDemo {
         singleLinkedList.show();
 
 
+        System.out.println("----");
+        singleLinkedList.delNode(5);
+        singleLinkedList.show();
+
+        System.out.println("个数为" + SingleLinkedList.getLength(singleLinkedList.getHead()));
+
+        singleLinkedList.getByDesc(2);
+
     }
 
 }
 
-// 定义SingleLinkedList,管理英雄
+/**
+ * 定义SingleLinkedList,管理英雄
+ */
 class SingleLinkedList {
 
-    // 初始化一个头结点
-    private HeroNode head = new HeroNode(0, "", "");
+    /**
+     * 初始化一个头节点
+     */
+    private final HeroNode head = new HeroNode(0, "", "");
+
+
+    /**
+     * 获取单链表
+     * 去掉头节点
+     *
+     * @return
+     */
+    public static int getLength(HeroNode head) {
+
+        if (head.next == null) {
+            return 0;
+        }
+
+        int length = 0;
+
+        HeroNode cur = head.next;
+
+        while (cur != null) {
+            length++;
+            cur = cur.next;
+        }
+
+        return length;
+    }
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加节点到单项链表
@@ -63,10 +107,10 @@ class SingleLinkedList {
             if (temp.next == null) {
                 temp.next = heroNode;
                 break;
-            } else {
-                // 如果没有找到 将temp后移
-                temp = temp.next;
             }
+
+            // 如果没有找到 将temp后移
+            temp = temp.next;
         }
 
     }
@@ -110,13 +154,35 @@ class SingleLinkedList {
 
 
     /**
+     * 删除链表中的节点
+     * 1. 先找到要删除节点的前一个节点
+     * 2. temp.next=temp.next.next , 直接使这个节点失去引用
+     */
+    public void delNode(int no) {
+
+        // 找到需要删除的节点的前一个节点
+        HeroNode temp = head;
+
+        while (true) {
+            if (temp.next == null) {
+                break;
+            }
+            if (temp.next.no == no) {
+                // 直接使这个节点失去引用 会被GC回收
+                temp.next = temp.next.next;
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    /**
      * 按no编号修改 链表的属性
      * no编号不能改
      *
      * @param heroNode 修改后的内容
      */
     public void updataNode(HeroNode heroNode) {
-
 
         // 1.找到需要修改的节点的下一个节点, 需要一个辅助指针来完成
         HeroNode temp = head;
@@ -141,9 +207,55 @@ class SingleLinkedList {
 
             // 指针下移
             temp = temp.next;
+        }
+    }
 
+    /**
+     * 查找单链表倒数的第K个元素（新浪）
+     * <p>
+     * 1. 先计算总个数
+     * 2. 要查找的元素位置=总个数-k
+     * 3. 注意下标边界值，判断下标不能<0
+     *
+     * @param k 下标
+     * @return
+     */
+    public void getByDesc(int k) {
+
+        //1. 先计算总个数
+        int length = getLength(head);
+
+        // 计算出正数是顺序位置
+        int index = length - k;
+
+        // 判断边界
+        if (k < 0 || k >index) {
+            System.out.println("超出边界");
         }
 
+        // 辅助变量
+        HeroNode temp = head.next;
+
+        // 记录当前下标 辅助变量
+        int count = 0;
+
+        //找到这个位置的元素
+        while (true) {
+
+            if (temp == null) {
+                return;
+            }
+            if (count == index) {
+                System.out.println("找到了" + temp.nickname);
+                return;
+            }
+
+            // 下标位移
+            count++;
+
+            // 节点位移
+            temp = temp.next;
+        }
 
     }
 
@@ -172,7 +284,6 @@ class SingleLinkedList {
                 break;
             }
         }
-
     }
 }
 
