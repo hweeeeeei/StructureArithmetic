@@ -7,6 +7,7 @@ package com.hwei.structure.linkedlist;
 public class SingleLinkedListDemo {
 
 
+
     public static void main(String[] args) {
 
         // 创建几个节点
@@ -33,7 +34,6 @@ public class SingleLinkedListDemo {
         singleLinkedList.show();
         System.out.println("----");
 
-
         // 修改
         heroNode5.nickname = "啊giao222";
         singleLinkedList.updataNode(heroNode5);
@@ -47,6 +47,10 @@ public class SingleLinkedListDemo {
         System.out.println("个数为" + SingleLinkedList.getLength(singleLinkedList.getHead()));
 
         singleLinkedList.getByDesc(2);
+
+        // 反转
+        HeroNode reverseNode = singleLinkedList.reverseLinked(singleLinkedList.getHead());
+        System.out.println("----");
 
     }
 
@@ -114,6 +118,43 @@ class SingleLinkedList {
         }
 
     }
+
+
+    /**
+     * 反转单链表 腾讯面试题
+     *
+     * @param
+     * @return
+     */
+    public HeroNode reverseLinked(HeroNode head) {
+
+        if (head.next == null) {
+            return null;
+        }
+
+        // 反转后的节点
+        HeroNode reverse = new HeroNode(0, "", "");
+        // 辅助遍历用的节点
+        HeroNode cur = head.next;
+        HeroNode next;
+
+        while (cur !=null) {
+
+            // 暂存下一个节点
+            next = cur.next;
+
+            // 插入到reverse前面
+            cur.next = reverse.next;
+
+            // 连接到新的链表上
+            reverse.next = cur;
+
+            // cur后移
+            cur = next;
+        }
+        return reverse;
+    }
+
 
     public void addSort(HeroNode heroNode) {
 
@@ -229,7 +270,7 @@ class SingleLinkedList {
         int index = length - k;
 
         // 判断边界
-        if (k < 0 || k >index) {
+        if (k < 0 || k > index) {
             System.out.println("超出边界");
         }
 
