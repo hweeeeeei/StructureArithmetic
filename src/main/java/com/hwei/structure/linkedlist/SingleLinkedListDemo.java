@@ -127,7 +127,6 @@ class SingleLinkedList {
      * @return
      */
     public HeroNode reverseLinked(HeroNode head) {
-
         if (head.next == null) {
             return null;
         }
