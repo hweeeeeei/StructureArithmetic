@@ -1,11 +1,12 @@
 package com.hwei.structure.linkedlist;
 
 
+import java.util.Stack;
+
 /**
  * 单链表  +   按id排序的单链表
  */
 public class SingleLinkedListDemo {
-
 
 
     public static void main(String[] args) {
@@ -32,25 +33,30 @@ public class SingleLinkedListDemo {
         singleLinkedList.addSort(heroNode3);
 
         singleLinkedList.show();
+//        System.out.println("----");
+//
+//        // 修改
+//        heroNode5.nickname = "啊giao222";
+//        singleLinkedList.updataNode(heroNode5);
+//        singleLinkedList.show();
+//
+//
+//        System.out.println("----");
+//        singleLinkedList.delNode(5);
+//        singleLinkedList.show();
+//
+//        System.out.println("个数为" + SingleLinkedList.getLength(singleLinkedList.getHead()));
+//
+//        singleLinkedList.getByDesc(2);
+//        System.out.println("----");
+//
+//        // 反转
+//        HeroNode reverseNode = singleLinkedList.reverseLinked(singleLinkedList.getHead());
+
         System.out.println("----");
 
-        // 修改
-        heroNode5.nickname = "啊giao222";
-        singleLinkedList.updataNode(heroNode5);
-        singleLinkedList.show();
-
-
-        System.out.println("----");
-        singleLinkedList.delNode(5);
-        singleLinkedList.show();
-
-        System.out.println("个数为" + SingleLinkedList.getLength(singleLinkedList.getHead()));
-
-        singleLinkedList.getByDesc(2);
-
-        // 反转
-        HeroNode reverseNode = singleLinkedList.reverseLinked(singleLinkedList.getHead());
-        System.out.println("----");
+        // 栈 逆序打印
+        singleLinkedList.reverstPrintStack(singleLinkedList.getHead());
 
     }
 
@@ -115,6 +121,33 @@ class SingleLinkedList {
 
             // 如果没有找到 将temp后移
             temp = temp.next;
+        }
+
+    }
+
+    /**
+     * 栈的方式打印
+     *
+     * @param head
+     */
+    public void reverstPrintStack(HeroNode head) {
+        if (head == null) {
+            return;
+        }
+
+        // 压入栈中
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode cur = head.next;
+        while (cur != null) {
+            // 入栈
+            stack.push(cur);
+            // 指针后移
+            cur = cur.next;
+        }
+
+        // 遍历栈
+        while (stack.size() > 0) {
+            System.out.println("pop:" + stack.pop());
         }
 
     }
