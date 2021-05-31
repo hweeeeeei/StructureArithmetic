@@ -8,8 +8,66 @@ import java.util.Stack;
  */
 public class SingleLinkedListDemo {
 
+    /**
+     * 递归 合并两个有序的单链表, 使之合并之后还保持原有顺序
+     *
+     * @return
+     */
+    public static HeroNode merge(HeroNode head1, HeroNode head2) {
+
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+
+        // 返回的node
+        HeroNode heroNode = null;
+
+        if (head1.no > head2.no) {
+
+            // 将小的节点给头节点
+            heroNode = head2;
+            heroNode.next = merge(head1, head2.next);
+
+        }else {
+            // 将小的节点给头节点
+            heroNode= head1;
+            heroNode.next =merge(head1.next,head2);
+        }
+
+        return heroNode;
+    }
+
 
     public static void main(String[] args) {
+
+        // 创建几个节点
+        HeroNode heroNode1 = new HeroNode(1, "宋江", "及时雨");
+        HeroNode heroNode2 = new HeroNode(2, "卢俊义", "玉麒麟");
+        HeroNode heroNode3 = new HeroNode(3, "无用", "智多星");
+        HeroNode heroNode4 = new HeroNode(4, "林聪", "豹子头");
+        HeroNode heroNode5 = new HeroNode(5, "giao", "啊giao");
+
+        // 创建一个链表
+        SingleLinkedList singleLinkedList1 = new SingleLinkedList();
+        singleLinkedList1.addSort(heroNode1);
+        singleLinkedList1.addSort(heroNode4);
+        singleLinkedList1.addSort(heroNode2);
+
+        // 创建一个链表
+        SingleLinkedList singleLinkedList2 = new SingleLinkedList();
+        singleLinkedList2.addSort(heroNode5);
+        singleLinkedList2.addSort(heroNode5);
+        singleLinkedList2.addSort(heroNode3);
+
+        HeroNode heroNode = merge(singleLinkedList1.getHead(), singleLinkedList2.getHead());
+
+    }
+
+
+        public static void main2(String[] args) {
 
         // 创建几个节点
         HeroNode heroNode1 = new HeroNode(1, "宋江", "及时雨");
@@ -34,22 +92,21 @@ public class SingleLinkedListDemo {
 
         singleLinkedList.show();
 //        System.out.println("----");
-//
+
 //        // 修改
 //        heroNode5.nickname = "啊giao222";
 //        singleLinkedList.updataNode(heroNode5);
 //        singleLinkedList.show();
-//
-//
+
 //        System.out.println("----");
 //        singleLinkedList.delNode(5);
 //        singleLinkedList.show();
-//
+
 //        System.out.println("个数为" + SingleLinkedList.getLength(singleLinkedList.getHead()));
-//
+
 //        singleLinkedList.getByDesc(2);
 //        System.out.println("----");
-//
+
 //        // 反转
 //        HeroNode reverseNode = singleLinkedList.reverseLinked(singleLinkedList.getHead());
 

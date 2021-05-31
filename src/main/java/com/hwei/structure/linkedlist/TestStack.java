@@ -5,7 +5,6 @@ import java.util.Stack;
 // 栈的基本使用
 public class TestStack {
 
-
      public static void main(String [] args){
 
          Stack<String> stack = new Stack<>();
