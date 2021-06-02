@@ -8,6 +8,10 @@ public class Josepfu {
 
     public static void main(String[] args) {
 
+        CircleSingleLinkList circleSingleLinkList = new CircleSingleLinkList();
+
+        circleSingleLinkList.addBoy(3);
+
 
     }
 }
@@ -20,7 +24,6 @@ class CircleSingleLinkList {
 
     // 添加小孩节点,构成环形的链表
     public void addBoy(int nums) {
-
         // 对nums数据校验
         if (nums < 1) {
             System.out.println("nums不正确");
@@ -32,18 +35,22 @@ class CircleSingleLinkList {
 
         // 使用for 创建环形链表
         for (int i = 1; i <= nums; i++) {
-
             Boy boy = new Boy(i);
-
             // 如果是第一个小孩
             if (i == 1) {
-
-                // 指向第一个小孩
+                // 第一个节点
                 first = boy;
+                first.setNext(first);
+                curBoy = first;
+            } else {
 
+                // 设置上一个节点的下个节点为当前节点
+                curBoy.setNext(boy);
+                boy.setNext(first);
+
+                // 辅助指针后移
+                curBoy = boy;
             }
-
-
         }
     }
 }
