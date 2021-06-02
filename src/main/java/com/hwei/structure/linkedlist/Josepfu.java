@@ -3,6 +3,7 @@ package com.hwei.structure.linkedlist;
 /**
  * 约瑟夫环
  * 约瑟夫问题
+ * 单向环形链表
  */
 public class Josepfu {
 
@@ -10,7 +11,9 @@ public class Josepfu {
 
         CircleSingleLinkList circleSingleLinkList = new CircleSingleLinkList();
 
-        circleSingleLinkList.addBoy(3);
+        circleSingleLinkList.addBoy(5);
+
+        circleSingleLinkList.show();
 
 
     }
@@ -50,6 +53,23 @@ class CircleSingleLinkList {
 
                 // 辅助指针后移
                 curBoy = boy;
+            }
+        }
+    }
+
+    // 遍历环形链表
+    public void show() {
+
+        // 复制遍历 指针
+        Boy curBoy = first;
+
+        while (true) {
+            System.out.println(curBoy.getNo());
+
+            // 指针位移1
+            curBoy = curBoy.getNext();
+            if (curBoy == first) {
+                return;
             }
         }
     }
