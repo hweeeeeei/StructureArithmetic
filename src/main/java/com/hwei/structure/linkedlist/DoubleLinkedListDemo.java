@@ -22,7 +22,6 @@ public class DoubleLinkedListDemo {
         doubleLinkedList.add(heroNode5);
         doubleLinkedList.show();
 
-
         heroNode5.name = "giao2";
         doubleLinkedList.updateByNo(heroNode5);
         System.out.println("修改后");
@@ -31,8 +30,6 @@ public class DoubleLinkedListDemo {
         doubleLinkedList.del(heroNode3);
         System.out.println("删除后");
         doubleLinkedList.show();
-
-
     }
 }
 
@@ -121,7 +118,6 @@ class DoubleLinkedList {
         // 直接使当前节点失去引用
         heroNode2.pre.next = heroNode2.next;
         heroNode2.next.pre = heroNode2.pre;
-
     }
 
 
@@ -151,7 +147,6 @@ class DoubleLinkedList {
             }
         }
     }
-
 
 }
 
