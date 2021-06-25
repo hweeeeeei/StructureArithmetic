@@ -31,9 +31,16 @@ public class LinkedStackDemo {
  * 单链表模拟栈
  */
 class LinkedStack {
-    private int maxSize;
+    private final int maxSize;
     private int length = 0;
     private LinkedStackNode stack;
+
+    public LinkedStack(int maxSize) {
+        if (maxSize < 1) {
+            throw new RuntimeException("maxSize <1");
+        }
+        this.maxSize = maxSize;
+    }
 
     /**
      * 出栈
@@ -51,7 +58,6 @@ class LinkedStack {
         // 长度-1
         length--;
     }
-
 
     /**
      * 入栈
@@ -78,14 +84,6 @@ class LinkedStack {
         System.out.println("push:" + data);
         // 长度递增
         length++;
-    }
-
-
-    public LinkedStack(int maxSize) {
-        if (maxSize < 1) {
-            throw new RuntimeException("maxSize <1");
-        }
-        this.maxSize = maxSize;
     }
 
     // 满

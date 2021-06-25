@@ -23,17 +23,15 @@ public class CircleArrayQueueDemo {
         circleArrayQueue.show();
 
 
-
-
     }
 }
 
 class CircleArrayQueue {
 
-    private int maxSize; //最大容量
+    private final int maxSize; //最大容量
     private int front; // 队列头 指向第一个元素
     private int rear; //队列尾 指向最后一个元素的后一个位置
-    private int[] arr; // 存放数据
+    private final int[] arr; // 存放数据
 
     public CircleArrayQueue(int maxSize) {
 

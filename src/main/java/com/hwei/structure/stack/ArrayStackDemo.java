@@ -35,8 +35,8 @@ public class ArrayStackDemo {
  * 定义一个类 表示栈
  */
 class ArrayStack {
-    private int maxSize; // 栈的元素最大数量
-    private int[] stack; // 数组模拟栈,数据就放在数组中
+    private final int maxSize; // 栈的元素最大数量
+    private final int[] stack; // 数组模拟栈,数据就放在数组中
     private int top = -1; // 栈顶 初始化-1
 
     public ArrayStack(int maxSize) {

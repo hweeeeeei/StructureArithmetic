@@ -30,9 +30,9 @@ public class ArrayQueueDemo {
 class ArrayQueue {
 
     private final int maxSize; //最大容量
+    private final int[] arr; // 存放数据
     private int front; // 队列头
     private int rear; //队列尾
-    private final int[] arr; // 存放数据
 
     public ArrayQueue(int maxSize) {
 
